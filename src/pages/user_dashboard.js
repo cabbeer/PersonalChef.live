@@ -154,3 +154,10 @@ function RecipesTab({ recipes }) {
   );
 }
 
+// function ShoppingCart({}) {
+//   const location = useLocation();
+
+//   return (
+//   console.log(location)
+//   )
+// }
