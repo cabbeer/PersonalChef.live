@@ -1,10 +1,12 @@
 import useLogin from "@/hooks/useLogin";
 import useLogout from "@/hooks/useLogout";
+import useVerified from "@/hooks/useVerified";
 import pb from "@/lib/pocketbase"
 import { useForm } from "react-hook-form"
 
 export const Auth = () => {
   const logout = useLogout();
+  const { isVerified, requestVerification} = useVerified();
   const {mutate: login, isLoading, isError} = useLogin();
   const {register, handleSubmit, reset} = useForm();
 
@@ -20,7 +22,8 @@ export const Auth = () => {
   if(isLoggedIn) return(
   <>
     <h1>Logged In: {pb.authStore.model.email}</h1>
-    <p>Verified: false</p>
+    <p>Verified: {isVerified.toString()}</p>
+    {!isVerified && <button onClick={requestVerification}>Send Verification Email</button>}
     <button onClick={logout}>Log Out</button>
   </>
   );
