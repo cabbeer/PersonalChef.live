@@ -1,13 +1,14 @@
+import useLogout from "@/hooks/useLogout";
 import pb from "@/lib/pocketbase"
 import { useState } from "react";
 import { useForm } from "react-hook-form"
 
 
 
-export default function Scratch () {
+export default function Auth () {
+  const logout = useLogout();
   const [isLoading, setLoading] = useState(false);
-  const [rerender, setRerender] = useState(0)
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit, reset} = useForm();
 
   const isLoggedIn = pb.authStore.isValid;
 
@@ -18,13 +19,11 @@ export default function Scratch () {
     } catch(e) {
       alert(e)
     }
-    setLoading(false)
+    setLoading(false);
+    reset();
   }
   
-  function logout() {
-    pb.authStore.clear();
-    setRerender(Math.random())
-  }
+
 
 
   if(isLoggedIn) return(
