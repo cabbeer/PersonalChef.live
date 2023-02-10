@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 
 export default function Auth () {
   const logout = useLogout();
-  const {login, isLoading} = useLogin();
+  const {mutate: login, isLoading, isError} = useLogin();
   const {register, handleSubmit, reset} = useForm();
 
   const isLoggedIn = pb.authStore.isValid;
@@ -14,22 +14,18 @@ export default function Auth () {
     login({email: data.email, password: data.password})
     reset();
   }
-  
-
-
 
   if(isLoggedIn) return(
   <>
     <h1>Logged In: {pb.authStore.model.email}</h1>
     <button onClick={logout}>Log Out</button>
-  
   </>
   );
 
   return(
     <>
       {isLoading && <p>Loading...</p>}
-      {/* <h1>logged in: {isLoggedIn && pb.authStore.model.email}</h1> */}
+      {isError && <p>Invalid email or password</p>}
     
     <form onSubmit={handleSubmit(onSubmit)}>
       <input type="text" placeholder="email" {...register("email")}/>
