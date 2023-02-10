@@ -1,5 +1,7 @@
 import PocketBase from 'pocketbase';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import {GoogleMap, useLoadScript, Marker} from "@react-google-maps/api";
+
 import {
   Flex,
   Avatar,
@@ -25,7 +27,6 @@ import {
   Tab,
   TabPanel,
 } from "@chakra-ui/react";
-
 
 // fetches a list of users and displays the list of users.
 export default function UserDashboard() {
@@ -58,6 +59,9 @@ return (
       <h1>Recipes</h1>
       <ul>
         <RecipesTab recipes={recipeData} />
+      </ul>
+      <ul>
+        <Map />
       </ul>
       {/* <h1>ShoppingCart</h1>
       <ul>
@@ -161,3 +165,38 @@ function RecipesTab({ recipes }) {
 //   console.log(location)
 //   )
 // }
+
+
+//  function Map ({user}) {
+//   const { lat, long } = user || {};
+//   const myLatLng = { lat: lat, lng: long };
+//   const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDUH5yXVbJ8wCI9byJ1BlSTDiUhz5QIrY0"});
+//   const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
+
+//   if(!isLoaded) {
+//     return <div>loading bish</div>
+//   }
+
+//   return (
+//     <GoogleMap zoom={10} center={center} mapContainerClassName={"map-container"}>
+//       <Marker position={myLatLng}/>
+//     </GoogleMap>
+//   );
+// };
+
+const Map = ({ user }) => {
+  // const { lat, long } = user || {};
+  // const myLatLng = lat && long ? { lat, lng: long } : { lat: 44, lng: -80 };
+  const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDUH5yXVbJ8wCI9byJ1BlSTDiUhz5QIrY0"});
+
+  if(!isLoaded) {
+    return <div>loading bish</div>
+  }
+
+  return (
+    <GoogleMap zoom={10} center={myLatLng} mapContainerClassName={"map-container"}>
+      {/* <Marker position={myLatLng} /> */}
+      <Marker position={lat: 44, lng: -80} />
+    </GoogleMap>
+  );
+};
