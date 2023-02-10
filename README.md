@@ -33,6 +33,27 @@ http://127.0.0.1:8090/api/
 http://127.0.0.1:8090/_/
 ```
 
+### Liraries and Frameworks used:
+
+> useForm 
+
+## React-forms
+> useMutation
+
+## React-query
+> useQuery
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Everything below this is a lie
 
