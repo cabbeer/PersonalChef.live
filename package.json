@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@heroicons/react": "^2.0.15",
     "@next/font": "13.1.6",
     "@react-google-maps/api": "^2.18.1",
     "chakra": "^0.0.3",
@@ -21,8 +22,10 @@
     "leaflet": "^1.9.3",
     "next": "^13.1.6",
     "pocketbase": "^0.10.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-leaflet": "^4.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.1",
+    "react-icons": "^4.7.1",
+    "react-query": "^3.39.3"
   }
 }
