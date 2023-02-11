@@ -4,6 +4,9 @@ import useVerified from "@/hooks/useVerified";
 import pb from "@/lib/pocketbase"
 import { useForm } from "react-hook-form"
 
+import { Input } from '@chakra-ui/react'
+
+
 export const Auth = () => {
   const logout = useLogout();
   const { isVerified, requestVerification} = useVerified();
@@ -30,7 +33,7 @@ export const Auth = () => {
 
   return(
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <p>loading...</p>}
       {isError && <p>Invalid email or password</p>}
     
     <form onSubmit={handleSubmit(onSubmit)}>
