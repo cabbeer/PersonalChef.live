@@ -8,7 +8,7 @@ import useVerified, {requestVerification} from "@/hooks/useVerified";
 
 export const Auth = () => {
   const logout = useLogout();
-  const {data: isVerified, isLoading } = useVerified();
+  const {data: isVerified } = useVerified();
   const {mutate: login, isLoading, isError} = useLogin();
   const {register, handleSubmit, reset} = useForm();
 
