@@ -1,6 +1,7 @@
-import PocketBase from 'pocketbase';
-import React, { useState, useEffect, useMemo } from 'react';
-import {GoogleMap, useLoadScript, Marker} from "@react-google-maps/api";
+import PocketBase from "pocketbase";
+import React, { useState, useEffect, useMemo } from "react";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { BrowserRouter as Router, useLocation } from "react-router-dom";
 
 import {
   Flex,
@@ -26,31 +27,45 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  Input,
 } from "@chakra-ui/react";
 
 // fetches a list of users and displays the list of users.
 export default function UserDashboard() {
   const [userData, setUserData] = useState([]);
   const [recipeData, setRecipeData] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const userRes = await fetch(`http://127.0.0.1:8090/api/collections/users/records`);
+      const userRes = await fetch(
+        `http://127.0.0.1:8090/api/collections/users/records`
+      );
       const userData = await userRes.json();
       setUserData(userData.items);
 
-      const recipeRes = await fetch('http://127.0.0.1:8090/api/collections/receipes/records');
+      const recipeRes = await fetch(
+        "http://127.0.0.1:8090/api/collections/recipes/records"
+      );
       const recipeData = await recipeRes.json();
       setRecipeData(recipeData.items);
     }
     fetchData();
   }, []);
 
-return (
-  <div>
-    <h1>Users</h1>
+  return (
+    <div>
+      <h1>Users</h1>
       <ul>
-        {userData.map(user => (
+        {userData.map((user) => (
           <li key={user.id}>
             <User user={user} />
           </li>
@@ -60,13 +75,15 @@ return (
       <ul>
         <RecipesTab recipes={recipeData} />
       </ul>
+      <h1>ShoppingCart</h1>
+      <ul>
+        <ShoppingCart cart={cart}/>
+      </ul>
+      <h1>Map</h1>
       <ul>
         <Map />
       </ul>
-      {/* <h1>ShoppingCart</h1>
-      <ul>
-        <ShoppingCart recipes={newRecipes} />
-      </ul> */}
+      <ul></ul>
     </div>
   );
 }
@@ -89,12 +106,12 @@ function User({ user }) {
 }
 
 function RecipesCard({ recipe }) {
-  // const history = useHistory();
   const { description, price, quantity, img_1, id, title } = recipe || {};
+  const [cart, setCart] = useState([]);
 
-  // const handleClick = () => {
-  //   history.push('/shopping-cart');
-  // };
+  const handleAddToCart = () => {
+    setCart([...cart, recipe]);
+  };
 
   return (
     <Card maxW="sm">
@@ -130,7 +147,7 @@ function RecipesCard({ recipe }) {
           </NumberInput>
         </Stack>
         <ButtonGroup spacing="3">
-          <Button variant="solid" colorScheme="blue">
+          <Button variant="solid" colorScheme="blue" onClick={handleAddToCart}>
             Add To Cart
           </Button>
         </ButtonGroup>
@@ -158,45 +175,64 @@ function RecipesTab({ recipes }) {
   );
 }
 
-// function ShoppingCart({}) {
-//   const location = useLocation();
+function ShoppingCart({ cart, recipe }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
 
-//   return (
-//   console.log(location)
-//   )
-// }
+  return (
+    <>
+      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+        Checkout
+      </Button>
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Final Checkout</DrawerHeader>
 
+          <DrawerBody>
+            {cart.map((item) => (
+              <div key={item.id}>
+                <p>{item.title}</p>
+                <p>{item.description}</p>
+                <p>{`Price: $${item.price}`}</p>
+              </div>
+            ))}
+            {/* {recipe} */}
+          </DrawerBody>
 
-//  function Map ({user}) {
-//   const { lat, long } = user || {};
-//   const myLatLng = { lat: lat, lng: long };
-//   const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDUH5yXVbJ8wCI9byJ1BlSTDiUhz5QIrY0"});
-//   const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button colorScheme="blue">Confirm</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
+}
 
-//   if(!isLoaded) {
-//     return <div>loading bish</div>
-//   }
+function Map() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyDUH5yXVbJ8wCI9byJ1BlSTDiUhz5QIrY0",
+  });
 
-//   return (
-//     <GoogleMap zoom={10} center={center} mapContainerClassName={"map-container"}>
-//       <Marker position={myLatLng}/>
-//     </GoogleMap>
-//   );
-// };
-
-const Map = ({ user }) => {
-  // const { lat, long } = user || {};
-  // const myLatLng = lat && long ? { lat, lng: long } : { lat: 44, lng: -80 };
-  const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDUH5yXVbJ8wCI9byJ1BlSTDiUhz5QIrY0"});
-
-  if(!isLoaded) {
-    return <div>loading bish</div>
+  if (!isLoaded) {
+    return <div>loading bish</div>;
   }
 
   return (
-    <GoogleMap zoom={10} center={myLatLng} mapContainerClassName={"map-container"}>
-      {/* <Marker position={myLatLng} /> */}
-      <Marker position={lat: 44, lng: -80} />
+    <GoogleMap
+      zoom={8}
+      center={{ lat: 43.7, lng: -79.6 }}
+      mapContainerClassName={"map-container"}
+    >
     </GoogleMap>
   );
-};
+}
