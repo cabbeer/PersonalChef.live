@@ -36,6 +36,8 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Input,
+  Grid,
+  GridItem
 } from "@chakra-ui/react";
 
 // fetches a list of users and displays the list of users.
@@ -62,21 +64,28 @@ export default function UserDashboard() {
   }, []);
 
   return (
-    <div>
+    <Grid templateColumns='repeat(7, 1fr)' gap={3}>
+      <GridItem as={"aside"} colSpan={1} minHeight={"100hv"} p={10}>
       <h1>Users</h1>
-      <ul>
         {userData.map((user) => (
-          <li key={user.id}>
+          <ul key={user.id}>
             <User user={user} />
-          </li>
+          </ul>
         ))}
+      </GridItem>
+      <GridItem as={"main"} colSpan={3} p={1}>
+      <h1>Recipes Form</h1>
+      <ul>
+        <RecipesTab recipes={recipeData} />
       </ul>
+      </GridItem>
+      <GridItem as={"main"} colSpan={3} p={1}>
       <h1>Recipes</h1>
       <ul>
         <RecipesTab recipes={recipeData} />
       </ul>
-      <h1>Recipe Form</h1>
-    </div>
+      </GridItem>
+    </Grid>
   );
 }
 
