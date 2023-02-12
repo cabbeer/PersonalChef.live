@@ -1,3 +1,4 @@
+// note: remove global styles ?(next boilerplate)
 import '@/styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClientProvider, QueryClient } from 'react-query'
