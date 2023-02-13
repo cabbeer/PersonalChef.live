@@ -4,7 +4,9 @@ import pb from "@/lib/pocketbase"
 import { useForm } from "react-hook-form"
 import useVerified, {requestVerification} from "@/hooks/useVerified";
 
-// refactored hooks with react-hooks for learning, past commits use useState
+// note: refactored hooks with react-hooks for learning, past commits use useState
+// This component calls the useLogin, useLogout, and useVerified hooks to manages Auth State of the Entire App!
+
 
 export const Auth = () => {
   const logout = useLogout();
