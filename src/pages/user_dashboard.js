@@ -2,6 +2,7 @@ import PocketBase from "pocketbase";
 import React, { useState, useEffect, useMemo } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
+import Basket from "./Basket";
 
 import {
   Flex,
@@ -37,15 +38,39 @@ import {
   useDisclosure,
   Input,
   Grid,
-  GridItem
+  GridItem,
 } from "@chakra-ui/react";
 
 // fetches a list of users and displays the list of users.
 export default function UserDashboard() {
   const [userData, setUserData] = useState([]);
   const [recipeData, setRecipeData] = useState([]);
-  const [cart, setCart] = useState([]);
-
+  const { products } = recipeData;
+  const [cartItems, setCartItems] = useState([]);
+  const onAdd = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+  };
+  const onRemove = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist.qty === 1) {
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+        )
+      );
+    }
+  };
   useEffect(() => {
     async function fetchData() {
       const userRes = await fetch(
@@ -64,9 +89,9 @@ export default function UserDashboard() {
   }, []);
 
   return (
-    <Grid templateColumns='repeat(7, 1fr)' gap={3}>
+    <Grid templateColumns="repeat(7, 1fr)" gap={3}>
       <GridItem as={"aside"} colSpan={1} minHeight={"100hv"} p={10}>
-      <h1>Users</h1>
+        <h1>Users</h1>
         {userData.map((user) => (
           <ul key={user.id}>
             <User user={user} />
@@ -74,19 +99,24 @@ export default function UserDashboard() {
         ))}
       </GridItem>
       <GridItem as={"main"} colSpan={6} p={40}>
-      <h1>Recipes</h1>
-      <ul>
-        <RecipesTab recipes={recipeData} />
-      </ul>
-      <h1>ShoppingCart</h1>
-      <ul>
-        <ShoppingCart cart={cart}/>
-      </ul>
-      <h1>Map</h1>
-      <ul>
-        <Map />
-      </ul>
-      <ul></ul>
+        <h1>Recipes</h1>
+        <ul>
+          <RecipesTab recipes={recipeData} onAdd={onAdd} />
+        </ul>
+        <h1>ShoppingCart</h1>
+        <ul>
+          <ShoppingCart cart={cartItems} onAdd={onAdd} />
+          <Basket
+            cartItems={cartItems}
+            onAdd={onAdd}
+            onRemove={onRemove}
+          ></Basket>
+        </ul>
+        <h1>Map</h1>
+        <ul>
+          <Map />
+        </ul>
+        <ul></ul>
       </GridItem>
     </Grid>
   );
@@ -109,14 +139,9 @@ function User({ user }) {
   );
 }
 
-function RecipesCard({ recipe }) {
-  const { description, price, quantity, img_1, id, title } = recipe || {};
-  const [cart, setCart] = useState([]);
-
-  const handleAddToCart = () => {
-    setCart([...cart, recipe]);
-  };
-
+function RecipesCard({ recipe,onAdd }) {
+  const { description, price, quantity, img_1, id, title } =
+    recipe || {};
   return (
     <Card maxW="sm">
       <CardBody>
@@ -151,16 +176,14 @@ function RecipesCard({ recipe }) {
           </NumberInput>
         </Stack>
         <ButtonGroup spacing="3">
-          <Button variant="solid" colorScheme="blue" onClick={handleAddToCart}>
-            Add To Cart
-          </Button>
+          <Button onClick={() => onAdd(recipe)}>Add To Cart</Button>
         </ButtonGroup>
       </CardFooter>
     </Card>
   );
 }
 
-function RecipesTab({ recipes }) {
+function RecipesTab({ recipes, onAdd }) {
   return (
     <Tabs variant="soft-rounded" colorScheme="green">
       <TabList>
@@ -171,7 +194,7 @@ function RecipesTab({ recipes }) {
       <TabPanels>
         {recipes.map((recipe) => (
           <TabPanel key={recipe.id}>
-            <RecipesCard recipe={recipe} />
+            <RecipesCard recipe={recipe} onAdd={onAdd} />
           </TabPanel>
         ))}
       </TabPanels>
@@ -179,9 +202,14 @@ function RecipesTab({ recipes }) {
   );
 }
 
-function ShoppingCart({ cart, recipe }) {
+function ShoppingCart({ recipe }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+  const [cart, setCart] = useState([]);
+
+  const onAdd = (item) => {
+    setCart([...cart, item]);
+  };
 
   return (
     <>
@@ -200,14 +228,11 @@ function ShoppingCart({ cart, recipe }) {
           <DrawerHeader>Final Checkout</DrawerHeader>
 
           <DrawerBody>
+          <RecipesTab recipe={recipe} onAdd={onAdd} />
             {cart.map((item) => (
-              <div key={item.id}>
-                <p>{item.title}</p>
-                <p>{item.description}</p>
-                <p>{`Price: $${item.price}`}</p>
-              </div>
+              <li key={item.id}>{item.name}</li>
             ))}
-            {/* {recipe} */}
+            {recipe}
           </DrawerBody>
 
           <DrawerFooter>
@@ -236,7 +261,6 @@ function Map() {
       zoom={8}
       center={{ lat: 43.7, lng: -79.6 }}
       mapContainerClassName={"map-container"}
-    >
-    </GoogleMap>
+    ></GoogleMap>
   );
 }
