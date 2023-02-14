@@ -29,10 +29,10 @@ export default function RecipeCard({ recipe, onAdd, onRemove }) {
     onAdd({ ...recipe, quantity: quantityToAdd });
   };
 
-  // const handleRemoveFromCart = () => {
-  //   const quantityToRemove = Number(quantityInputRef.current?.value);
-  //   onRemove({ ...recipe, quantity: quantityToRemove });
-  // };
+  const handleRemoveFromCart = () => {
+    const quantityToRemove = Number(quantityInputRef.current?.value);
+    onRemove({ ...recipe, quantity: quantityToRemove });
+  };
 
   return (
     <Card maxW="sm">
@@ -67,9 +67,9 @@ export default function RecipeCard({ recipe, onAdd, onRemove }) {
             </NumberInputStepper>
           </NumberInput>
         </Stack>
-        <ButtonGroup spacing="3">
-          <Button onClick={handleAddToCart}>Add To Cart</Button>
-          {/* <Button onClick={handleRemoveFromCart}>Remove From Cart</Button> */}
+        <ButtonGroup spacing="2">
+          <Button onClick={handleAddToCart}>Add</Button>
+          <Button onClick={handleRemoveFromCart}>Remove</Button>
         </ButtonGroup>
       </CardFooter>
     </Card>
