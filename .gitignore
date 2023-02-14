@@ -31,3 +31,5 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+/Users/stephanierowe/final-demo/components/Archived
