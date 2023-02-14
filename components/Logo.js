@@ -19,7 +19,7 @@ const LogoBox = styled.span`
 `
 //add logo png here: 
 const Logo = () => {
-  const chefImg = `/public/images/logo${useColorModeValue('','-dark')}.png`
+  const chefImg = `/images/logo${useColorModeValue('','-dark')}.png`
   return(
     //how do I do this without legcyBehavior??!?
     <Link legacyBehavior href="/">
@@ -27,7 +27,13 @@ const Logo = () => {
         <LogoBox>
           <Image src={chefImg} width={20} height={20} alt="logo" />
         <Text
-          color={useColorModeValue('gray.800')}></Text>
+          color={useColorModeValue('gray.800')}
+          fontFamily='M PLUS Rounded 1c'
+          fontWeight="bold"
+          ml={3}
+          >
+            PersonalChef.live
+          </Text>
         </LogoBox>
       </a>
     </Link>

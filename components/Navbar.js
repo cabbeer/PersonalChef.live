@@ -1,4 +1,3 @@
-
 import Logo from "./logo";
 import NextLink from "next/link";
 import {
@@ -21,15 +20,15 @@ const LinkItem = ({ href, path, children }) => {
   const active = path === href;
   const inactiveColor = useColorModeValue("gray200", "WhiteAlpha.900");
   return (
-    <Link 
-        as={NextLink}
-        href={href}
+    <NextLink href={href}>
+      <Link
         p={2}
         bg={active ? "glassTeal" : undefined}
         color={active ? "#20203" : inactiveColor}
       >
         {children}
       </Link>
+    </NextLink>
   );
 };
 
@@ -55,10 +54,20 @@ const Navbar = (props) => {
         justify="space-between"
       >
         <Flex align="center" mr={5}>
-            <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-            <Logo/>
-            </Heading>
+          <Heading as="h1" size="lg" letterSpacing={"tighter"}>
+            <Logo />
+          </Heading>
         </Flex>
+        <Stack
+        direction={{base: 'column', md:'row'}}
+        display={{base: 'none', md: 'flex'}}
+        width={{base: 'full', md: 'auto'}}
+        alignItems="center"
+        flexGrow={1}
+        mt={{base:4, nmd:0}}
+        >
+        <LinkItem ></LinkItem>
+        </Stack>
       </Container>
     </Box>
   );
