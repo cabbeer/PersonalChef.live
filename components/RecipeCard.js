@@ -1,22 +1,38 @@
-import React from 'react';
+// RecipesCard.js
+import { useRef } from "react";
 
-export default function Product(props) {
-  const { product, onAdd } = props;
-  return (
-    <div>
-      <img className="small" src={product.image} alt={product.name} />
-      <h3>{product.name}</h3>
-      <div>${product.price}</div>
-      <div>
-        <button onClick={() => onAdd(product)}>Add To Cart</button>
-      </div>
-    </div>
-  );
-}
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  Divider,
+  Button,
+  ButtonGroup,
+  Image,
+  Heading,
+  Stack,
+  Text,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+} from "@chakra-ui/react";
 
-function RecipesCard({ recipe, props }) {
+export default function RecipeCard({ recipe, onAdd, onRemove }) {
   const { description, price, quantity, img_1, id, title } = recipe || {};
-  const {onAdd} = props;
+
+  const quantityInputRef = useRef();
+
+  const handleAddToCart = () => {
+    const quantityToAdd = Number(quantityInputRef.current?.value);
+    onAdd({ ...recipe, quantity: quantityToAdd });
+  };
+
+  const handleRemoveFromCart = () => {
+    const quantityToRemove = Number(quantityInputRef.current?.value);
+    onRemove({ ...recipe, quantity: quantityToRemove });
+  };
 
   return (
     <Card maxW="sm">
@@ -51,10 +67,9 @@ function RecipesCard({ recipe, props }) {
             </NumberInputStepper>
           </NumberInput>
         </Stack>
-        <ButtonGroup spacing="3">
-          <Button onClick={() => onAdd(recipe)}>Add To Cart
-            Add To Cart
-          </Button>
+        <ButtonGroup spacing="2">
+          <Button onClick={handleAddToCart}>Add</Button>
+          <Button onClick={handleRemoveFromCart}>Remove</Button>
         </ButtonGroup>
       </CardFooter>
     </Card>
