@@ -18,7 +18,6 @@ const Work = () => {
                 <List ml={4} my={4}>
                     <ListItem>
                         <Meta>Website</Meta>
-                        https://www.inkdrop.app/ <ExternalLinkIcon mx="2px"/>
                     </ListItem>
 
                     <ListItem>
@@ -31,9 +30,6 @@ const Work = () => {
                         <span>NodeJS, Electron, React Native</span>
                     </ListItem>
                     <ListItem>
-                        <Link href="https://www.inkdrop.app/">
-                        https://www.inkdrop.app/ <ExternalLinkIcon mx="2px" />
-                        </Link>
                     </ListItem>
                 </List>
             </Container>
