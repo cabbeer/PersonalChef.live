@@ -1,7 +1,8 @@
-import { chakra } from "@chakra-ui/react";
 import Link from "next/link";
-import { Text } from "@chakra-ui/react";
+import Image from "next/image";
+import { Text, useColorModeValue, useColorMode, chakra } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+
 
 const LogoBox = styled.span`
   font-weight: bold;
@@ -16,24 +17,20 @@ const LogoBox = styled.span`
     transform: rotate(20deg);
   }
 `
-
+//add logo png here: 
 const Logo = () => {
-  // const footPrintImg = `/public/images/footprint${useColorModeValue("", "-dark)}.png`
+  const chefImg = `/public/images/logo${useColorModeValue('','-dark')}.png`
   return(
-    <Link href="/">
-    <a>
-      <LogoBox>
-        <Image src={footPrintImg} width={20} height={20} alt="logo" />
+    //how do I do this without legcyBehavior??!?
+    <Link legacyBehavior href="/">
+      <a>
+        <LogoBox>
+          <Image src={chefImg} width={20} height={20} alt="logo" />
         <Text
-          color={useColorMode('gray.800,', 'whiteAlpha.900')}
-          fontFamily="M PLUS Rounded 1c"
-          fontWeight="bold"
-          ml={3}>
-          Personal Chef 
-          </Text>
-      </LogoBox>
-    </a>
-    </Link> 
+          color={useColorModeValue('gray.800')}></Text>
+        </LogoBox>
+      </a>
+    </Link>
   )
 }
 
