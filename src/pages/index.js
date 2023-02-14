@@ -8,7 +8,7 @@ import styles from '@/styles/Home.module.css'
 
 //App: Component Imports
 import { Auth } from 'components/Auth'
-import { Navbar } from 'components/Navbar'
+import { Navbar } from 'components/navbar'
 
 //Page imports
 import { Box, Container, Heading } from '@chakra-ui/react'
