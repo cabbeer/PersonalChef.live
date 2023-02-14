@@ -15,6 +15,9 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import ThemeToggleButton from "./theme-toggle-button";
+import { Auth } from "./Auth";
+
 
 const LinkItem = ({ href, path, children }) => {
   const active = path === href;
@@ -41,7 +44,7 @@ const Navbar = (props) => {
       as="nav"
       w="100%"
       bg={useColorModeValue("#ffffff40", "#20202380")}
-      syle={{ backdropFilter: "blur(10px" }}
+      syle={{ backdropFilter: 'blur(10px)' }}
       zIndex={1}
       {...props}
     >
@@ -66,9 +69,36 @@ const Navbar = (props) => {
           flexGrow={1}
           mt={{ base: 4, nmd: 0 }}
         >
-          {/* <LinkItem path={path}>Works</LinkItem>
-          <LinkItem path={path}>Posts</LinkItem> */}
+          <LinkItem href="/works" path={path}>Works</LinkItem>
+          <LinkItem href="/posts" path={path}>Posts</LinkItem>
         </Stack>
+
+        <Box flex={1} align="right">
+        <ThemeToggleButton/>
+          <Box ml={2} display={{ base: "inline-block", md: "none" }}>
+            <Menu>
+            <MenuButton
+                as={IconButton}
+                icon={<HamburgerIcon />}
+                variant="outline"
+                aria-label="Options"
+              />
+              <MenuList>
+                <NextLink href="/" passHref>
+                    <MenuItem >About</MenuItem>
+                </NextLink>
+
+                <NextLink href="/works" passHref>
+                    <MenuItem >Works</MenuItem>
+                </NextLink>
+
+                <NextLink href="/posts" passHref>
+                    <MenuItem >Posts</MenuItem>
+                </NextLink>
+              </MenuList>
+            </Menu>
+          </Box>
+        </Box>
       </Container>
     </Box>
   );

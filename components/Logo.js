@@ -17,28 +17,26 @@ const LogoBox = styled.span`
     transform: rotate(20deg);
   }
 `
-//add logo png here: 
+//todo: add logo for dark mode
 const Logo = () => {
   const chefImg = `/images/logo${useColorModeValue('','-dark')}.png`
-  return(
-    //how do I do this without legcyBehavior??!?
-    <Link legacyBehavior href="/">
-      <a>
-        <LogoBox>
-          <Image src={chefImg} width={20} height={20} alt="logo" />
-        <Text
-          color={useColorModeValue('gray.800')}
-          fontFamily='M PLUS Rounded 1c'
-          fontWeight="bold"
-          ml={3}
-          >
-            PersonalChef.live
-          </Text>
-        </LogoBox>
-      </a>
-    </Link>
-  )
+  return (<Link href="/" scroll={false}>
+
+  <LogoBox>
+      <Image src={chefImg} width={20} height={20} alt="logo" />
+    <Text
+      color={useColorModeValue('gray.800', 'whiteAlpha.900')}
+      fontFamily='M PLUS Rounded 1c", sans-serif'
+      fontWeight="bold"
+      ml={3}
+    >
+      PersonalChef.live
+    </Text>
+  </LogoBox>
+  
+  </Link>)
 }
 
 
 export default Logo
+

@@ -1,6 +1,9 @@
 // NOTE: Site entry point - DO NOTE EDIT PAGE!
 import '@/styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
+import Fonts from 'components/fonts'
+import theme from '@/lib/theme'
+import { AnimatePresence } from 'framer-motion'
 
 //Setup React-Query
 import { QueryClientProvider, QueryClient } from 'react-query'
@@ -12,10 +15,13 @@ import Layout from "../../components/layouts/Main"
 
 const Website = ({ Component, pageProps, router}) => {
   return(
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
+    <Fonts/>
       <QueryClientProvider client={queryClient}>
         <Layout router={router}>
-          <Component {...pageProps} key={router.route}/>
+          <AnimatePresence exitBeforeEnter initial={true}>
+            <Component {...pageProps} key={router.route}/>
+          </AnimatePresence>
         </Layout>
       </QueryClientProvider>
     </ChakraProvider>
