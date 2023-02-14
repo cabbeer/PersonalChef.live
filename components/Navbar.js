@@ -59,14 +59,15 @@ const Navbar = (props) => {
           </Heading>
         </Flex>
         <Stack
-        direction={{base: 'column', md:'row'}}
-        display={{base: 'none', md: 'flex'}}
-        width={{base: 'full', md: 'auto'}}
-        alignItems="center"
-        flexGrow={1}
-        mt={{base:4, nmd:0}}
+          direction={{ base: "column", md: "row" }}
+          display={{ base: "none", md: "flex" }}
+          width={{ base: "full", md: "auto" }}
+          alignItems="center"
+          flexGrow={1}
+          mt={{ base: 4, nmd: 0 }}
         >
-        <LinkItem ></LinkItem>
+          {/* <LinkItem path={path}>Works</LinkItem>
+          <LinkItem path={path}>Posts</LinkItem> */}
         </Stack>
       </Container>
     </Box>
