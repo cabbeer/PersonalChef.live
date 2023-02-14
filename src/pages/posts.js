@@ -14,7 +14,7 @@ return(
     <Layout title="Posts">
       <Container>
         <Heading as="h3" fontSize={20} mb={4}>
-          Popular Posts
+          This is where Chefs can create/ manage recipies
         </Heading>
   
         <Section delay={0.1}>

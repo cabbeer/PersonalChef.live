@@ -69,9 +69,9 @@ const Navbar = (props) => {
           flexGrow={1}
           mt={{ base: 4, nmd: 0 }}
         >
-          <LinkItem href="/works" path={path}>Dashboard</LinkItem>
-          <LinkItem href="/posts" path={path}>Browse</LinkItem>
-          <LinkItem href="/posts" path={path}>SignUp</LinkItem>
+          <LinkItem href="/posts" path={path}>Dashboard</LinkItem>
+          <LinkItem href="/works" path={path}>Browse</LinkItem>
+          <LinkItem href="/signup" path={path}>SignUp</LinkItem>
 
         </Stack>
 

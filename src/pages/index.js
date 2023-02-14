@@ -19,6 +19,7 @@ import Section from "components/section";
 import Layout from "components/layouts/article";
 import Paragraph from "components/paragraph";
 import { BioSection, BioYear } from "components/bio";
+import { Auth } from "components/Auth";
 
 // ask mentor what this does and if i can delete it (react boilerplate)
 // const inter = Inter({ subsets: ['latin'] })
@@ -34,10 +35,7 @@ const Home = () => {
           mb={6}
           align="center"
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-          condimentum magna nec nulla porta, non maximus quam condimentum.
-          Curabitur et tincidunt ligula. Sed laoreet massa libero, eu elementum
-          purus aliquam at.
+          <Auth/>
         </Box>
         <Box display={{ md: `flex` }}>
           <Box flexGrow={1}>
@@ -46,7 +44,7 @@ const Home = () => {
             </Heading>
             <p>Authentic dishes. Homemade. Delivered.</p>
           </Box>
-          <Box
+          {/* <Box
             flexShrink={0}
             mt={{ base: 4, md: 0 }}
             ml={{ md: 6 }}
@@ -62,12 +60,12 @@ const Home = () => {
               src="/images/text-logo.png"
               alt="logo"
             />
-          </Box>
+          </Box> */}
         </Box>
  
         <Section delay={0.1}>
           <Heading as="h3" variant="section-title">
-            About
+            What is PersonalChef?
           </Heading>
           <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
           condimentum magna nec nulla porta, non maximus quam condimentum.{''}
