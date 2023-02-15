@@ -19,11 +19,6 @@ export default function RecipeCard({ recipe, onAdd }) {
 
   const quantityInputRef = useRef();
 
-  const handleAddToCart = () => {
-    const quantityToAdd = Number(quantityInputRef.current?.value);
-    onAdd({ ...recipe, quantity: quantityToAdd });
-  };
-
   return (
     <Card maxW="sm">
       <CardBody>
@@ -40,16 +35,6 @@ export default function RecipeCard({ recipe, onAdd }) {
           </Text>
         </Stack>
       </CardBody>
-      <Divider />
-      <CardFooter>
-        <Stack shouldWrapChildren direction="row">
-        </Stack>
-        <ButtonGroup spacing="2">
-        <Button onClick={handleAddToCart}>Add to Shopping Cart</Button>
-        </ButtonGroup>
-      </CardFooter>
     </Card>
   );
 }
-
-

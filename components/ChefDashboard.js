@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Grid, GridItem, Heading, } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Heading,SimpleGrid, Wrap, WrapItem } from "@chakra-ui/react";
 import User from "./User";
-import RecipeTab from "./RecipeTab";
+import RecipeTab from "./RecipeTab_Chef";
 import ShoppingCart from "./ShoppingCart";
 import pb from "@/lib/pocketbase"
 
@@ -69,7 +69,7 @@ export default function UserDashboard() {
   };
 
   return (
-    <Grid templateColumns="repeat(2, 1fr)" gap={3}>
+    <SimpleGrid minChildWidth='10px' spacing='40px'>
       {/* <GridItem as={"aside"} colSpan={1} minHeight={"100hv"} p={5}>
         {userData.map((user) => (
           <ul key={user.id}>
@@ -77,26 +77,18 @@ export default function UserDashboard() {
           </ul>
         ))}
       </GridItem> */}
-      <GridItem as={"main"} colSpan={1} p={4}>
+      <Box height='1000px'>
       <Heading as="h3" fontSize={20} mb={4}>Recipes</Heading>
         <ul>
           <RecipeTab
             recipes={recipeData}
-            onAdd={handleAddToCart}
           />
         </ul>
-        </GridItem>
-        <GridItem as={"main"} colSpan={1} p={4}>
-        <Heading as="h3" fontSize={15} mb={4}>ShoppingCart</Heading>
-        <ul>
-          <ShoppingCart
-            cartItems={cartItems}
-            onAdd={handleAddToCart}
-            onRemove={handleRemoveFromCart}
-          ></ShoppingCart>
-        </ul>
-      </GridItem>
-    </Grid>
+        </Box>
+        <Box height='1000px'>
+        <Heading as="h3" fontSize={15} mb={4}>Recipe Form</Heading>
+        </Box>
+    </SimpleGrid>
   );
         // }
 }

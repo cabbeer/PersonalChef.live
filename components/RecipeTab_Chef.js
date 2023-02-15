@@ -1,6 +1,6 @@
 // RecipesTab.js
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/react";
-import RecipeCard from "./RecipeCard";
+import RecipeCard from "./RecipeCard_Chef";
 
 export default function RecipeTab({ recipes, onAdd, onRemove }) {
   return (
