@@ -1,6 +1,8 @@
 import { extendTheme } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 
+// This theme files overrides ckakraUI base - move to layout folder in includes?
+
 const styles = {
   global: props => ({
     body: {

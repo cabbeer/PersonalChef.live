@@ -17,7 +17,7 @@ const LogoBox = styled.span`
     transform: rotate(20deg);
   }
 `
-//todo: add logo for dark mode
+
 const Logo = () => {
   const chefImg = `/images/logo${useColorModeValue('','-dark')}.png`
   return (<Link href="/" scroll={false}>
