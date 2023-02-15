@@ -6,23 +6,21 @@ import { WorkGridItem } from "components/grid-item";
 import Section from "components/section";
 import Layout from "components/layouts/article";
 
-const Works = () => {
+import UserDashboard from "components/UserDashboard";
+
+const Browse = () => {
   return (
   <Layout>
       <Container>
         <Heading as="h3" fontSize={20} mb={4}>
-          Your Recipies/ Local Recipies
+          Browse Local Recipies
         </Heading>
-        <SimpleGrid columns={[1, 1, 3]} gap={6}>
-          <Section>
-            <WorkGridItem href="/" id="inkdrop" title="Inkdrop" thumbnail={thumbInkdrop}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </WorkGridItem>
-          </Section>
-        </SimpleGrid>
+
+      <UserDashboard/>
+
       </Container>
     </Layout>
 );
 };
 
-export default Works;
+export default Browse;

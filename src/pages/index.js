@@ -76,7 +76,7 @@ const Home = () => {
           </NextLink>
           </Paragraph>
           <Box align="center" my={4}>
-          <NextLink href="/works">
+          <NextLink href="/browse">
             <Button rightIcon={<ChevronRightIcon/>}>
               Find-Food
             </Button>

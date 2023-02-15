@@ -1,4 +1,4 @@
-import { Container, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, Container, Heading, SimpleGrid } from "@chakra-ui/react";
 
 import Layout from "components/layouts/article";
 import Section from "components/section";
@@ -8,71 +8,139 @@ import { GridItem } from "components/grid-item";
 import plate1 from "/public/images/content/plate1.jpg";
 import plate2 from "/public/images/content/plate2.jpg";
 import plate3 from "/public/images/content/plate3.jpg";
+import plate4 from "/public/images/content/plate5.jpg";
+import plate5 from "/public/images/content/plate4.jpg";
 
-const Posts = () => {
-return(
+import thumbInkdrop from "/public/images/content/plate1.jpg";
+
+//Custom components
+import { WorkGridItem } from "components/grid-item";
+import CreateRecipe from "components/create-recipe";
+import { Stat } from "@chakra-ui/react";
+
+const Dashboard = () => {
+  const stats = [
+    {
+      label: 'Total Subscribers',
+      value: '71,887',
+    },
+    {
+      label: 'Avg. Open Rate',
+      value: '56.87%',
+    },
+    {
+      label: 'Avg. Click Rate',
+      value: '12.87%',
+    },
+  ]
+
+
+  return (
     <Layout title="Posts">
+
+<Box
+          as="section"
+          py={{
+            base: "4",
+            md: "8",
+          }}
+        >
+          <Container>
+            <SimpleGrid
+              columns={{
+                base: 1,
+                md: 3,
+              }}
+              gap={{
+                base: "5",
+                md: "6",
+              }}
+            >
+              {stats.map(({ label, value }) => (
+                <Stat key={label} label={label} value={value} />
+              ))}
+            </SimpleGrid>
+          </Container>
+        </Box>
+
+
+
       <Container>
+      {/* Chef Dashboard Stats */}
+        <CreateRecipe />
+
         <Heading as="h3" fontSize={20} mb={4}>
-          This is where Chefs can create/ manage recipies
+          Your recipies
         </Heading>
-  
-        <Section delay={0.1}>
-          <SimpleGrid columns={[1, 2, 2]} gap={6}>
-            <GridItem
-              title="How to build a portfolio website"
+
+        {/* Print chef recipies: */}
+        <SimpleGrid columns={[1, 1, 3]} gap={6}>
+          <Section>
+            <WorkGridItem
+              href="/"
+              id="recipe-card"
+              title="Leftover Pizza"
               thumbnail={plate1}
-              href="https://www.youtube.com/watch?v=bSMZgXzC9AA"
-            />
-            <GridItem
-              title="How to take notes in Markdown efficiently with Inkdrop"
-              thumbnail={plate1}
-              href="https://www.youtube.com/watch?v=-qBavwqc_mY"
-            />
-            <GridItem
-              title="My Fish workflow"
-              thumbnail={plate1}
-              href="https://www.youtube.com/watch?v=KKxhf50FIPI"
-            />
-            <GridItem
-              title="My desk setup (Late 2020)"
-              thumbnail={plate1}
-              href="https://www.youtube.com/watch?v=1OFDMwDlnOE"
-            />
-          </SimpleGrid>
-        </Section>
-  
-        <Section delay={0.3}>
-          <SimpleGrid columns={[1, 2, 2]} gap={6}>
-            <GridItem
-              title="How I’ve Attracted The First 500 Paid Users For My SaaS That Costs $5/mo"
-              thumbnail={plate1}
-              href="https://blog.inkdrop.app/how-ive-attracted-the-first-500-paid-users-for-my-saas-that-costs-5-mo-7a5b94b8e820"
-            />
-            <GridItem
-              title="I stopped setting a financial goal for my SaaS"
-              thumbnail={plate1}
-              href="https://blog.inkdrop.app/i-stopped-setting-a-financial-goal-for-my-saas-a92c3db65506"
-            />
-          </SimpleGrid>
-        </Section>
-  
-        <Section delay={0.5}>
-          <SimpleGrid columns={[1, 2, 2]} gap={6}>
-            <GridItem
-              title="How to Price Yourself as a Freelance Developer"
-              thumbnail={plate1}
-              href="https://blog.inkdrop.app/how-to-price-yourself-as-a-freelance-developer-3453dfd59d91"
-            />
-            <GridItem
-              title="I made my React Native app 50x faster"
-              thumbnail={plate1}
-              href="https://www.youtube.com/watch?v=vj723NlrIQc"
-            />
-          </SimpleGrid>
-        </Section>
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </WorkGridItem>
+          </Section>
+
+          <Section>
+            <WorkGridItem
+              href="/"
+              id="recipe-card"
+              title="Grilled Peaches"
+              thumbnail={plate2}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </WorkGridItem>
+          </Section>
+
+          <Section>
+            <WorkGridItem
+              href="/"
+              id="recipe-card"
+              title="Par-fet"
+              thumbnail={plate3}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </WorkGridItem>
+          </Section>
+        </SimpleGrid>
+
+        {/* Print chef recipies - row2: */}
+        <SimpleGrid columns={[1, 1, 3]} gap={6}>
+          <Section>
+            <WorkGridItem
+              href="/"
+              id="recipe-card"
+              title="Contemporary American Poultry"
+              thumbnail={plate4}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </WorkGridItem>
+          </Section>
+
+          <Section>
+            <WorkGridItem
+              href="/"
+              id="recipe-card"
+              title="Chicken n' Waffles"
+              thumbnail={plate5}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </WorkGridItem>
+          </Section>
+
+          {/* <Section>
+            <WorkGridItem href="/" id="recipe-card" title="Inkdrop" thumbnail={plate3}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </WorkGridItem>
+          </Section> */}
+        </SimpleGrid>
       </Container>
     </Layout>
-  )
-}
-  export default Posts
+  );
+};
+export default Dashboard;
