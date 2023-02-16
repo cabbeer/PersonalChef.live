@@ -35,6 +35,7 @@ import { BioSection, BioYear } from "components/bio";
 const Signup = () => {
   return (
     <>
+    <Layout title="SignUp">
       <Container>
         <Box
           borderRadius="lg"
@@ -101,6 +102,7 @@ const Signup = () => {
     </Stack>
         </Box>
       </Container>
+      </Layout>
     </>
   );
 };

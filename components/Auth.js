@@ -6,7 +6,7 @@ import useVerified, {requestVerification} from "@/hooks/useVerified";
 
 // note: refactored hooks with react-hooks for learning, past commits use useState
 // This component calls the useLogin, useLogout, and useVerified hooks to manages Auth State of the Entire App!
-
+import { Input, Button } from "@chakra-ui/react";
 
 export const Auth = () => {
   const logout = useLogout();
@@ -24,10 +24,10 @@ export const Auth = () => {
 
   if(isLoggedIn) return(
   <>
-    <h1>Logged In: {pb.authStore.model.email}</h1>
+    <h1>{pb.authStore.model.email}</h1>
     <p>Verified: {isVerified?.toString()}</p>
     {!isVerified && <button onClick={requestVerification}>Send Verification Email</button>}
-    <button onClick={logout}>Log Out</button>
+    {/* <button onClick={logout}>Log Out</button> */}
   </>
   );
 
@@ -39,9 +39,9 @@ export const Auth = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <input type="text" placeholder="email" {...register("email")}/>
       <input type="password" placeholder="password" {...register("password")}/>
-      <button type="submit" disabled={isLoading}>
+      {/* <button type="submit" disabled={isLoading}>
         {isLoading ? "Loading" : "Login"}
-      </button>
+      </button> */}
     </form>
     
     </>
