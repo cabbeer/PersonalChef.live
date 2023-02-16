@@ -82,7 +82,7 @@ const Dashboard = () => {
               title="Leftover Pizza"
               thumbnail={plate1}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. */}
             </WorkGridItem>
           </Section>
 
@@ -93,7 +93,7 @@ const Dashboard = () => {
               title="Grilled Peaches"
               thumbnail={plate2}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. */}
             </WorkGridItem>
           </Section>
 
@@ -104,7 +104,7 @@ const Dashboard = () => {
               title="Par-fet"
               thumbnail={plate3}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. */}
             </WorkGridItem>
           </Section>
         </SimpleGrid>
@@ -118,7 +118,7 @@ const Dashboard = () => {
               title="Contemporary American Poultry"
               thumbnail={plate4}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. */}
             </WorkGridItem>
           </Section>
 
@@ -129,7 +129,7 @@ const Dashboard = () => {
               title="Chicken n' Waffles"
               thumbnail={plate5}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. */}
             </WorkGridItem>
           </Section>
 

@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <>
       <Container>
-        <Box
+        {/* <Box
           borderRadius="lg"
           bg={useColorModeValue("whiteAlpha.500", "whiteAlpha.200")}
           p={3}
@@ -36,7 +36,7 @@ const Home = () => {
           align="center"
         >
           <Auth/>
-        </Box>
+        </Box> */}
         <Box display={{ md: `flex` }}>
           <Box flexGrow={1}>
             <Heading as="h2" variant="page-title">
