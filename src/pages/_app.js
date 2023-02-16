@@ -1,3 +1,4 @@
+'use client'
 // NOTE: Site entry point - DO NOTE EDIT PAGE!
 import '@/styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
