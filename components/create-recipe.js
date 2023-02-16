@@ -93,10 +93,10 @@ const CreateRecipe = () => {
                 <InputLeftElement
                   pointerEvents="none"
                   color="gray.300"
-                  fontSize="1.2em"
+                  fontSize="1em"
                   children="$"
                 />
-                <Input placeholder="Enter amount" />
+                <Input placeholder="Amount" />
                 <InputRightElement />
               </InputGroup>
 
@@ -105,16 +105,16 @@ const CreateRecipe = () => {
 
 
 
-  <FormLabel>Price</FormLabel>
+  <FormLabel>Portion</FormLabel>
               <InputGroup>
 
                 <InputLeftElement
                   pointerEvents="none"
                   color="gray.300"
-                  fontSize="1.2em"
-                  children="$"
+                  fontSize="1em"
+                  children="oz"
                 />
-                <Input placeholder="Enter amount" />
+                <Input placeholder="Size" />
                 <InputRightElement />
               </InputGroup>
 
